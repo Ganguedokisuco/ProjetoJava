@@ -281,7 +281,7 @@ private void componentesTelaCreditar(JPanel painel) {
 				JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 			}
 		});
-		botaoAvancar.setBounds(380, 300, 85, 30);
+		botaoAvancar.setBounds(370, 300, 95, 30);
 		return botaoAvancar;
 		
 	}
@@ -298,7 +298,7 @@ private void componentesTelaCreditar(JPanel painel) {
 				tct.setVisible(true);
 			}
 		});
-		botaoAtualizar.setBounds(380, 300, 85, 30);
+		botaoAtualizar.setBounds(370, 300, 95, 30);
 		return botaoAtualizar;
 	}
 	//Botao de Deletar os componentes do BD. Tela de Deletar
@@ -314,7 +314,7 @@ private void componentesTelaCreditar(JPanel painel) {
 				td.setVisible(true);
 			}
 		});
-		botaoDeletar.setBounds(380, 300, 85, 30);
+		botaoDeletar.setBounds(370, 300, 95, 30);
 		return botaoDeletar;
 	}
 	public Component botaoOkCreditar(){
@@ -329,7 +329,7 @@ private void componentesTelaCreditar(JPanel painel) {
 		
 			}
 		});
-		botaoOk.setBounds(380, 300, 85, 30);
+		botaoOk.setBounds(370, 300, 95, 30);
 		return botaoOk;
 	}
 	public Component botaoOkDebitar(){
@@ -344,7 +344,7 @@ private void componentesTelaCreditar(JPanel painel) {
 				
 			}
 		});
-		botaoOk.setBounds(380, 300, 85, 30);
+		botaoOk.setBounds(370, 300, 95, 30);
 		return botaoOk;
 	}
 	
