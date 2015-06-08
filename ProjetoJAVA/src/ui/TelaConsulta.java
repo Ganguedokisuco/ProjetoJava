@@ -166,7 +166,7 @@ public class TelaConsulta extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Ação de atualizar
-				JOptionPane.showMessageDialog(null, "Dados atualizado com sucesso!");
+				JOptionPane.showMessageDialog(null, "Cadastro atualizado com sucesso!");
 				
 			}
 		});

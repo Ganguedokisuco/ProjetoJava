@@ -187,7 +187,7 @@ private void componentesTelaCreditar(JPanel painel) {
 		JTextField campoC = new JTextField("                           ");
 		panel4.add(campoC);
 		//Label Conta
-		JLabel label = new JLabel( "CONTAS" );
+		JLabel label = new JLabel( "CONTA" );
 		panel4.add( label );
 		
 		//INSTANCIA DA CLASSE PARA CRIAR TABLE
