@@ -216,7 +216,7 @@ private void componentesTelaCreditar(JPanel painel) {
 		
 		nome(painel);		
 		cpf(painel,10,60,150,20);
-		numeroDaConta(painel, 10, 105, 150, 20);
+		dataNascimento(painel, 10, 105, 150, 20);
 //		saldo(painel);
 		
 		//BOTAO AVANCAR
@@ -274,6 +274,18 @@ private void componentesTelaCreditar(JPanel painel) {
 	public void numeroDaConta(JPanel painel, int x, int y , int width, int height){
 		//NUMERO DA CONTA 10, 105, 150, 20
 		JLabel labelConta = new JLabel("Numero da Conta: ");
+		labelConta.setBounds(x, y, width, height);
+		painel.add(labelConta);
+		
+		JTextField fieldConta = new JTextField();
+		fieldConta.setBounds( x, y+20, width, height);
+		painel.add(fieldConta);
+				
+	}
+	//
+	public void dataNascimento(JPanel painel, int x, int y , int width, int height){
+		//NUMERO DA CONTA 10, 105, 150, 20
+		JLabel labelConta = new JLabel("Data de Nascimento: ");
 		labelConta.setBounds(x, y, width, height);
 		painel.add(labelConta);
 		
