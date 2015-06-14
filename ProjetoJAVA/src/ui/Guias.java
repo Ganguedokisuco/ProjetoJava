@@ -453,7 +453,7 @@ public class Guias extends JFrame{
 		return botaoDeletar;
 	}
 	public Component botaoOkCreditar(){
-		JButton botaoOk = new JButton("Ok");
+		JButton botaoOk = new JButton("Creditar");
 		
 		botaoOk.addActionListener(new ActionListener() {
 			
@@ -468,7 +468,7 @@ public class Guias extends JFrame{
 		return botaoOk;
 	}
 	public Component botaoOkDebitar(){
-		JButton botaoOk = new JButton("Ok");
+		JButton botaoOk = new JButton("Debitar");
 		
 		botaoOk.addActionListener(new ActionListener() {
 			
