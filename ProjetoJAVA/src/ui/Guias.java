@@ -130,7 +130,7 @@ public class Guias extends JFrame{
 				
 			if(index == 7){	
 				try {
-						java.awt.Desktop.getDesktop().open( new File( "C:/Users/Eduardo/Desktop/Redes.txt" ));
+						java.awt.Desktop.getDesktop().open( new File( "src/arquivo/Manual URANUS Teste.pdf" ));
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
