@@ -79,7 +79,7 @@ public class Guias extends JFrame{
 		
 		//Criar icone para renderizar na guia
 		JLabel lbl = new JLabel();
-		Icon icon = new ImageIcon(getClass().getResource("/icones/help.png")); 
+		Icon icon = new ImageIcon(getClass().getResource("/icons/help.png")); 
 		lbl.setIcon(icon);
 		
 		//Adicionar algum espaço entre texto e icone, e posição do texto para RHS
@@ -87,25 +87,25 @@ public class Guias extends JFrame{
 		lbl.setHorizontalTextPosition(SwingConstants.RIGHT);
 		
 		//Criar icone para renderizar na guia Cadastrar
-		Icon iconCadastrar = new ImageIcon(getClass().getResource("/icones/file.png")); 
+		Icon iconCadastrar = new ImageIcon(getClass().getResource("/icons/file.png")); 
 		
 		//Criar icone para renderizar na guia Atualizar
-		Icon iconAtualiza = new ImageIcon(getClass().getResource("/icones/find-new-users.png"));
+		Icon iconAtualiza = new ImageIcon(getClass().getResource("/icons/find-new-users.png"));
 		
 		//Criar icone para renderizar na guia Creditar
-		Icon iconCreditar = new ImageIcon(getClass().getResource("/icones/money_add.png"));
+		Icon iconCreditar = new ImageIcon(getClass().getResource("/icons/money_add.png"));
 
 		//Criar icone para renderizar na guia Debitadar
-		Icon iconDebita = new ImageIcon(getClass().getResource("/icones/money_delete.png"));
+		Icon iconDebita = new ImageIcon(getClass().getResource("/icons/money_delete.png"));
 
 		//Criar icone para renderizar na guia Deletar
-		Icon iconDeletar = new ImageIcon(getClass().getResource("/icones/delete.png"));
+		Icon iconDeletar = new ImageIcon(getClass().getResource("/icons/delete.png"));
 		
 		//Criar icone para renderizar na guia Listar
-		Icon iconListar = new ImageIcon(getClass().getResource("/icones/list.png"));
+		Icon iconListar = new ImageIcon(getClass().getResource("/icons/list.png"));
 		
 		//Criar icone para renderizar na guia Iniciar
-		Icon iconIniciar = new ImageIcon(getClass().getResource("/icones/home.png"));
+		Icon iconIniciar = new ImageIcon(getClass().getResource("/icons/home.png"));
 		
 		//Guias
 		tabbedPane = new JTabbedPane();
@@ -130,7 +130,7 @@ public class Guias extends JFrame{
 				
 			if(index == 7){	
 				try {
-						java.awt.Desktop.getDesktop().open( new File( "C:/Users/Hbytes/Desktop/Redes.txt" ));
+						java.awt.Desktop.getDesktop().open( new File( "C:/Users/Eduardo/Desktop/Redes.txt" ));
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
