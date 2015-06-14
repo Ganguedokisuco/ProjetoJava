@@ -77,6 +77,9 @@ public class Guias extends JFrame{
 		createPageDebitar();
 		//createPageHelp();
 		
+		//Criar icone para renderizar na guia Iniciar
+		Icon iconIniciar = new ImageIcon(getClass().getResource("/icons/home.png"));
+				
 		//Criar icone para renderizar na guia
 		JLabel lbl = new JLabel();
 		Icon icon = new ImageIcon(getClass().getResource("/icons/help.png")); 
@@ -104,12 +107,9 @@ public class Guias extends JFrame{
 		//Criar icone para renderizar na guia Listar
 		Icon iconListar = new ImageIcon(getClass().getResource("/icons/list.png"));
 		
-		//Criar icone para renderizar na guia Iniciar
-		Icon iconIniciar = new ImageIcon(getClass().getResource("/icons/home.png"));
-		
 		//Guias
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Inicial",icon, panelInicial);	
+		tabbedPane.addTab("Inicial",iconIniciar, panelInicial);	
 		tabbedPane.addTab( "Cadastrar",iconCadastrar, panel1 );
 		//tabbedPane.setTabComponentAt(1, lblCadastrar);
 		tabbedPane.addTab( "Atualizar",iconAtualiza, panel2);
