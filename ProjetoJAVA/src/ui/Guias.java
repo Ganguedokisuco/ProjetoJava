@@ -220,7 +220,7 @@ public class Guias extends JFrame{
 	//Componentes da tela Inicial
 	private void componentesTelaInicial(JPanel painel) {
 		//Boas vindas
-		JLabel labelB = new JLabel("Bem Vindos!");
+		JLabel labelB = new JLabel("Bem Vindo!");
 		labelB.setBounds(300, 10, 150, 80);
 		painel.add(labelB);
 		// 
