@@ -318,6 +318,7 @@ public class Guias extends JFrame{
 		nome(painel);		
 		cpf(painel,10,60,150,20);
 		dataNascimento(painel);
+		numeroDaConta(painel, 10, 150, 150, 20);
 		
 		//BOTAO AVANCAR
 		painel.add(botaoCadastrar());
