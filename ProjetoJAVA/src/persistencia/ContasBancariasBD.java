@@ -2,7 +2,7 @@ package persistencia;
 
 import java.util.List;
 
-import modelo.Conta;
+import facade.Conta;
 
 public class ContasBancariasBD implements IContasBancarias {
 
@@ -19,7 +19,16 @@ public class ContasBancariasBD implements IContasBancarias {
 //		JDBC
 		return null;
 	}
-	
-	
 
+	@Override
+	public void deletar(Conta conta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizar(Conta conta) {
+		// TODO Auto-generated method stub
+		
+	}
 }

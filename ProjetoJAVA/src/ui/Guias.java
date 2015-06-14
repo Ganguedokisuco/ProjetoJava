@@ -4,10 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.image.ImageProducer;
+import java.io.File;
+import java.io.IOException;
 
+import javax.swing.AbstractButton;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +26,11 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 public class Guias extends JFrame{
 	
@@ -40,18 +51,23 @@ public class Guias extends JFrame{
 	private JPanel panel2;
 	private JPanel panel3;
 	private JPanel panel4;
+	private JPanel panelHelp;
+	private ImageIcon im;
 	
 	//Metodo para criar as Guias
 	public void tabbedPane(){
 		
 		setTitle("URANUS v1.0");
-		setSize(500, 400);
+		setSize(640, 400);
 		setBackground(Color.GRAY);
+		setResizable(false);
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout());
 		getContentPane().add(topPanel);
 		
+		
+		//Organização das Guias
 		createPageInicial();
 		createPage1();
 		createPage2();
@@ -59,25 +75,106 @@ public class Guias extends JFrame{
 		createPage4();
 		createPageCreditar();
 		createPageDebitar();
+		//createPageHelp();
 		
+		//Criar icone para renderizar na guia
+		JLabel lbl = new JLabel();
+		Icon icon = new ImageIcon(getClass().getResource("/icones/help.png")); 
+		lbl.setIcon(icon);
+		
+		//Adicionar algum espaço entre texto e icone, e posição do texto para RHS
+		lbl.setIconTextGap(5);
+		lbl.setHorizontalTextPosition(SwingConstants.RIGHT);
+		
+		//Criar icone para renderizar na guia Cadastrar
+		Icon iconCadastrar = new ImageIcon(getClass().getResource("/icones/file.png")); 
+		
+		//Criar icone para renderizar na guia Atualizar
+		Icon iconAtualiza = new ImageIcon(getClass().getResource("/icones/find-new-users.png"));
+		
+		//Criar icone para renderizar na guia Creditar
+		Icon iconCreditar = new ImageIcon(getClass().getResource("/icones/money_add.png"));
+
+		//Criar icone para renderizar na guia Debitadar
+		Icon iconDebita = new ImageIcon(getClass().getResource("/icones/money_delete.png"));
+
+		//Criar icone para renderizar na guia Deletar
+		Icon iconDeletar = new ImageIcon(getClass().getResource("/icones/delete.png"));
+		
+		//Criar icone para renderizar na guia Listar
+		Icon iconListar = new ImageIcon(getClass().getResource("/icones/list.png"));
+		
+		//Criar icone para renderizar na guia Iniciar
+		Icon iconIniciar = new ImageIcon(getClass().getResource("/icones/home.png"));
+		
+		//Guias
 		tabbedPane = new JTabbedPane();
-		tabbedPane.addTab("Inicial", panelInicial);
-		tabbedPane.addTab( "Cadastrar", panel1);
-		tabbedPane.addTab( "Atualizar", panel2);
-		tabbedPane.addTab( "Deletar", panel3);
-		tabbedPane.addTab( "Listar", panel4);
-		tabbedPane.addTab( "Creditar",panelCreditar );
-		tabbedPane.addTab("Debitar", panelDebitar);
+		tabbedPane.addTab("Inicial",icon, panelInicial);	
+		tabbedPane.addTab( "Cadastrar",iconCadastrar, panel1 );
+		//tabbedPane.setTabComponentAt(1, lblCadastrar);
+		tabbedPane.addTab( "Atualizar",iconAtualiza, panel2);
+		tabbedPane.addTab( "Deletar",iconDeletar, panel3);
+		tabbedPane.addTab( "Listar",iconListar, panel4);
+		tabbedPane.addTab( "Creditar", iconCreditar,panelCreditar );
+		tabbedPane.addTab( "Debitar", iconDebita,panelDebitar);
+		tabbedPane.addTab( "",panelHelp);
+		tabbedPane.setTabComponentAt(7, lbl);	
+		
+		//Função de ativar chamada de arquivo externo
+		ChangeListener changeListener = new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent changeEvent) {
+				JTabbedPane sourceTabbedPane = (JTabbedPane) changeEvent.getSource();
+				int index = sourceTabbedPane.getSelectedIndex();
+				
+			if(index == 7){	
+				try {
+						java.awt.Desktop.getDesktop().open( new File( "C:/Users/Hbytes/Desktop/Redes.txt" ));
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}	
+			}
+		}
+	};
+		tabbedPane.addChangeListener(changeListener);
+		
 		topPanel.add( tabbedPane, BorderLayout.CENTER);
 	}
+	/*
+	 * INUTILIZADO
+	 */
+	
+	//Criar painel de Help
+	private void createPageHelp(){
+		panelHelp = new JPanel();
+		panelHelp.setLayout(null);	
+		
+		//componentesTelaHelp(panelHelp);
+	}
+	//Componentes do painel de Help
+	private void componentesTelaHelp(JPanel painel) {
+		JButton b = new JButton("Help");
+		b.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			   
+			}
+		});
+		b.setBounds(215,150,70,30);
+		painel.add(b);
+	}
+	
+	//Criar painel de Debitar
 	private void createPageDebitar() {
 		panelDebitar = new JPanel();
 		panelDebitar.setLayout(null);
-
 		
 		componentesTelaDebitar(panelDebitar);
 	}
-	//Criar icone painel Debitar
+	//Criar componentes painel Debitar
 	
 	private void componentesTelaDebitar(JPanel painel) {
 		numeroDaConta(painel, 10, 15, 150, 20 );
@@ -85,6 +182,7 @@ public class Guias extends JFrame{
 		panelDebitar.add(botaoOkDebitar());
 		
 	}
+	//Criar painel de Creditar
 	private void createPageCreditar(){
 		panelCreditar = new JPanel();
 		panelCreditar.setLayout(null);
@@ -92,7 +190,8 @@ public class Guias extends JFrame{
 		componentesTelaCreditar(panelCreditar);
 		
 	}
-private void componentesTelaCreditar(JPanel painel) {
+	//Criar componenetes painel Creditar
+	private void componentesTelaCreditar(JPanel painel) {
 		numeroDaConta(painel, 10, 15, 150, 20 );
 		creditar(painel);
 		panelCreditar.add(botaoOkCreditar());
@@ -110,37 +209,39 @@ private void componentesTelaCreditar(JPanel painel) {
 //	public void getRealSource(){
 //		
 //	}
+	//Criar painel Inicial
 	private void createPageInicial() {
 		panelInicial = new JPanel();
 		panelInicial.setLayout(null);
-		
+
 		componentesTelaInicial(panelInicial);
 		
 	}
+	//Componentes da tela Inicial
 	private void componentesTelaInicial(JPanel painel) {
 		//Boas vindas
 		JLabel labelB = new JLabel("Bem Vindos!");
-		labelB.setBounds(200, 10, 150, 80);
+		labelB.setBounds(300, 10, 150, 80);
 		painel.add(labelB);
 		// 
 		JLabel labelC = new JLabel("URANUS é um programa desenvolvido para contas bancárias.");
-		labelC.setBounds(40, 80, 500, 20);
+		labelC.setBounds(140, 80, 500, 20);
 		painel.add(labelC);
 
 		JLabel labelD = new JLabel("Desenvolvedores: ");
-		labelD.setBounds(40, 180, 120, 20);
+		labelD.setBounds(140, 180, 120, 20);
 		painel.add(labelD);
 	
 		JLabel labelEduardo = new JLabel("-Eduardo Torres");
-		labelEduardo.setBounds(60, 200, 120, 20);
+		labelEduardo.setBounds(160, 200, 120, 20);
 		painel.add(labelEduardo);
 	
 		JLabel labelChico = new JLabel("-Francisco de Assis");
-		labelChico.setBounds(60, 220, 120, 20);
+		labelChico.setBounds(160, 220, 120, 20);
 		painel.add(labelChico);
 		
 		JLabel labelHend = new JLabel("-Henderson Aryel");
-		labelHend.setBounds(60, 240, 120, 20);
+		labelHend.setBounds(160, 240, 120, 20);
 		painel.add(labelHend);
 	}
 	//Painel de Cadastrar
@@ -187,7 +288,7 @@ private void componentesTelaCreditar(JPanel painel) {
 		JTextField campoC = new JTextField("                           ");
 		panel4.add(campoC);
 		//Label Conta
-		JLabel label = new JLabel( "CONTA" );
+		JLabel label = new JLabel( "CONTAS" );
 		panel4.add( label );
 		
 		//INSTANCIA DA CLASSE PARA CRIAR TABLE
@@ -216,8 +317,8 @@ private void componentesTelaCreditar(JPanel painel) {
 		
 		nome(painel);		
 		cpf(painel,10,60,150,20);
-		dataNascimento(painel, 10, 105, 150, 20);
-//		saldo(painel);
+		numeroDaConta(painel, 10, 105, 150, 20);
+		saldo(painel);
 		
 		//BOTAO AVANCAR
 		painel.add(botaoCadastrar());
@@ -274,18 +375,6 @@ private void componentesTelaCreditar(JPanel painel) {
 	public void numeroDaConta(JPanel painel, int x, int y , int width, int height){
 		//NUMERO DA CONTA 10, 105, 150, 20
 		JLabel labelConta = new JLabel("Numero da Conta: ");
-		labelConta.setBounds(x, y, width, height);
-		painel.add(labelConta);
-		
-		JTextField fieldConta = new JTextField();
-		fieldConta.setBounds( x, y+20, width, height);
-		painel.add(fieldConta);
-				
-	}
-	//
-	public void dataNascimento(JPanel painel, int x, int y , int width, int height){
-		//NUMERO DA CONTA 10, 105, 150, 20
-		JLabel labelConta = new JLabel("Data de Nascimento: ");
 		labelConta.setBounds(x, y, width, height);
 		painel.add(labelConta);
 		

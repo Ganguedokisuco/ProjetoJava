@@ -2,9 +2,11 @@ package modelo;
 
 import java.util.List;
 
+import facade.Conta;
 import persistencia.IContasBancarias;
 
 public class ContaBancaria {
+	//Classe para conexao do pacote persistencia
 	
 	IContasBancarias persitencia;
 	
