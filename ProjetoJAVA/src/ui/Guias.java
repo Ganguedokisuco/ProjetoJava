@@ -374,7 +374,7 @@ public class Guias extends JFrame{
 	//
 	public void numeroDaConta(JPanel painel, int x, int y , int width, int height){
 		//NUMERO DA CONTA 10, 105, 150, 20
-		JLabel labelConta = new JLabel("Numero da Conta: ");
+		JLabel labelConta = new JLabel("Número da Conta: ");
 		labelConta.setBounds(x, y, width, height);
 		painel.add(labelConta);
 		
