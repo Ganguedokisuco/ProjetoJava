@@ -57,7 +57,7 @@ public class Guias extends JFrame{
 	//Metodo para criar as Guias
 	public void tabbedPane(){
 		
-		setTitle("URANUS v1.0");
+		setTitle("URANUS v2.0");
 		setSize(640, 400);
 		setBackground(Color.GRAY);
 		setResizable(false);
@@ -232,16 +232,16 @@ public class Guias extends JFrame{
 		labelD.setBounds(140, 180, 120, 20);
 		painel.add(labelD);
 	
-		JLabel labelEduardo = new JLabel("-Eduardo Torres");
-		labelEduardo.setBounds(160, 200, 120, 20);
+		JLabel labelEduardo = new JLabel("- Eduardo Torres Medeiros de Araújo");
+		labelEduardo.setBounds(160, 200, 250, 20);
 		painel.add(labelEduardo);
 	
-		JLabel labelChico = new JLabel("-Francisco de Assis");
-		labelChico.setBounds(160, 220, 120, 20);
+		JLabel labelChico = new JLabel("- Francisco de Assis Alcântara Neto");
+		labelChico.setBounds(160, 220, 250, 20);
 		painel.add(labelChico);
 		
-		JLabel labelHend = new JLabel("-Henderson Aryel");
-		labelHend.setBounds(160, 240, 120, 20);
+		JLabel labelHend = new JLabel("- Henderson Aryel Alves Martins");
+		labelHend.setBounds(160, 240, 250, 20);
 		painel.add(labelHend);
 	}
 	//Painel de Cadastrar
@@ -317,8 +317,7 @@ public class Guias extends JFrame{
 		
 		nome(painel);		
 		cpf(painel,10,60,150,20);
-		numeroDaConta(painel, 10, 105, 150, 20);
-		saldo(painel);
+		dataNascimento(painel);
 		
 		//BOTAO AVANCAR
 		painel.add(botaoCadastrar());
@@ -361,15 +360,15 @@ public class Guias extends JFrame{
 		fieldDebitar.setBounds( 10, 80, 150, 20);
 		painel.add(fieldDebitar);
 	}
-	public void saldo(JPanel painel){
-		//SALDO INICIAL
-		JLabel labelSaldo = new JLabel("Saldo Inicial: ");
-		labelSaldo.setBounds(10, 150, 150, 20);
-		painel.add(labelSaldo);
+	public void dataNascimento(JPanel painel){
+		//Data de Nascimento
+		JLabel labeldataNascimento = new JLabel("Data de Nascimento: ");
+		labeldataNascimento.setBounds(10, 105, 150, 20);
+		painel.add(labeldataNascimento);
 				
-		JTextField fieldSaldo = new JTextField();
-		fieldSaldo.setBounds( 10, 170, 150, 20);
-		painel.add(fieldSaldo);	
+		JTextField fielddataNascimento = new JTextField();
+		fielddataNascimento.setBounds(10, 125, 150, 20);
+		painel.add(fielddataNascimento);	
 	}
 	//
 	public void numeroDaConta(JPanel painel, int x, int y , int width, int height){
@@ -417,7 +416,7 @@ public class Guias extends JFrame{
 				JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 			}
 		});
-		botaoAvancar.setBounds(370, 300, 100, 30);
+		botaoAvancar.setBounds(520, 300, 100, 30);
 		return botaoAvancar;
 		
 	}
@@ -434,7 +433,7 @@ public class Guias extends JFrame{
 				tct.setVisible(true);
 			}
 		});
-		botaoAtualizar.setBounds(380, 300, 85, 30);
+		botaoAtualizar.setBounds(520, 300, 100, 30);
 		return botaoAtualizar;
 	}
 	//Botao de Deletar os componentes do BD. Tela de Deletar
@@ -450,7 +449,7 @@ public class Guias extends JFrame{
 				td.setVisible(true);
 			}
 		});
-		botaoDeletar.setBounds(380, 300, 85, 30);
+		botaoDeletar.setBounds(520, 300, 100, 30);
 		return botaoDeletar;
 	}
 	public Component botaoOkCreditar(){
@@ -465,7 +464,7 @@ public class Guias extends JFrame{
 		
 			}
 		});
-		botaoOk.setBounds(380, 300, 85, 30);
+		botaoOk.setBounds(520, 300, 100, 30);
 		return botaoOk;
 	}
 	public Component botaoOkDebitar(){
@@ -480,7 +479,7 @@ public class Guias extends JFrame{
 				
 			}
 		});
-		botaoOk.setBounds(380, 300, 85, 30);
+		botaoOk.setBounds(520, 300, 100, 30);
 		return botaoOk;
 	}
 	
