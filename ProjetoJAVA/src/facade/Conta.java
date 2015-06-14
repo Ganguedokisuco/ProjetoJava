@@ -3,7 +3,10 @@ package facade;
 public abstract class Conta {
 	
 	private String numero;
-	private double saldo;
+	protected double saldo;
+	
+	public abstract double debitar (float valor, double taxa);
+	public abstract double creditar (float valor);
 	
 	public Conta(String numero, double saldo) {
 		this.numero = numero;
@@ -22,4 +25,6 @@ public abstract class Conta {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	
+	
 }
