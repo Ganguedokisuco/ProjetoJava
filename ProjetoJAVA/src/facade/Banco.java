@@ -2,7 +2,11 @@ package facade;
 
 import java.util.List;
 
-import modelo.Conta;
+
+
+
+import javax.swing.JTextField;
+
 import modelo.ContaBancaria;
 
 /**
@@ -11,18 +15,24 @@ import modelo.ContaBancaria;
  * @date 
  */
 public class Banco {
-	
+	//Classe criada para conexao com pacote modelo
 	private ContaBancaria contaBancaria;
 	
-	public Banco(ContaBancaria bancaria) {
-		this.contaBancaria = bancaria;
+	public Banco() {
+		this.contaBancaria = new ContaBancaria();
 	}
 	
 	public void cadastrarConta(Conta conta) {
 		contaBancaria.cadastrarConta(conta);
 	}
-	
+	public void deletarConta(String string){
+		contaBancaria.deletarConta(string);
+	}
+	public void creditarConta(double saldo){
+		contaBancaria.creditarConta(saldo);
+	}
 	public List<Conta> listarContas() {
 		return contaBancaria.listarConta();
 	}
+	
 }

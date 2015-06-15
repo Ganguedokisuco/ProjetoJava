@@ -4,17 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.image.ImageProducer;
 import java.io.File;
 import java.io.IOException;
 
-import javax.swing.AbstractButton;
-import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,13 +21,14 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import modelo.ListaConta;
+import facade.Banco;
+import facade.Conta;
+
 public class Guias extends JFrame{
-	
 	
 	TelaConfima tc = new TelaConfima();
 	TelaConsulta tct = new TelaConsulta();
@@ -54,6 +49,22 @@ public class Guias extends JFrame{
 	private JPanel panelHelp;
 	private ImageIcon im;
 	
+	JTextField fieldConta = null;
+	JTextField fieldNome = null;
+	JTextField fielddataNascimento = null;
+	JTextField fieldDebitar = null;
+	JTextField fieldCPF = null;
+	JTextField fieldCreditar = null;
+	
+	GuiMain gm = new GuiMain();
+	ListaConta lc = new ListaConta();
+	Conta c = null;
+	Banco banco = new Banco();
+	private JTextField fieldCPF2;
+	private JTextField fieldCPF3;
+	private JTextField fieldConta2;
+	private JTextField fieldConta3;
+	
 	//Metodo para criar as Guias
 	public void tabbedPane(){
 		
@@ -64,8 +75,7 @@ public class Guias extends JFrame{
 		
 		JPanel topPanel = new JPanel();
 		topPanel.setLayout(new BorderLayout());
-		getContentPane().add(topPanel);
-		
+		getContentPane().add(topPanel);	
 		
 		//Organização das Guias
 		createPageInicial();
@@ -177,7 +187,7 @@ public class Guias extends JFrame{
 	//Criar componentes painel Debitar
 	
 	private void componentesTelaDebitar(JPanel painel) {
-		numeroDaConta(painel, 10, 15, 150, 20 );
+		numeroDaConta3(painel, 10, 15, 150, 20 );
 		debitar(painel);
 		panelDebitar.add(botaoOkDebitar());
 		
@@ -192,7 +202,7 @@ public class Guias extends JFrame{
 	}
 	//Criar componenetes painel Creditar
 	private void componentesTelaCreditar(JPanel painel) {
-		numeroDaConta(painel, 10, 15, 150, 20 );
+		numeroDaConta2(painel, 10, 15, 150, 20 );
 		creditar(painel);
 		panelCreditar.add(botaoOkCreditar());
 	}
@@ -322,15 +332,16 @@ public class Guias extends JFrame{
 		
 		//BOTAO AVANCAR
 		painel.add(botaoCadastrar());
+		
 	}
 	//Componenetes da tela de ATUALIZAR
 	public void componentesTelaAtualizar(JPanel painel){
-		cpf(painel,10,15,150,20);
+		cpf2(painel,10,15,150,20);
 		painel.add(botaoAtualizar());
 	}
 	//Componentes da tela de DELETAR
 	public void componentesTelaDeletar(JPanel painel){
-		cpf(painel,10,15,150,20);
+		cpf3(painel,10,15,150,20);
 		painel.add(botaoDeletar());
 	}
 	//Componentes da tela de DEBITAR
@@ -347,7 +358,7 @@ public class Guias extends JFrame{
 		labelCreditar.setBounds(10, 60, 150, 20);
 		painel.add(labelCreditar);
 				
-		JTextField fieldCreditar = new JTextField();
+		fieldCreditar = new JTextField();
 		fieldCreditar.setBounds( 10, 80, 150, 20);
 		painel.add(fieldCreditar);
 	}
@@ -357,7 +368,7 @@ public class Guias extends JFrame{
 		labelDebitar.setBounds(10, 60, 150, 20);
 		painel.add(labelDebitar);
 				
-		JTextField fieldDebitar = new JTextField();
+		fieldDebitar = new JTextField();
 		fieldDebitar.setBounds( 10, 80, 150, 20);
 		painel.add(fieldDebitar);
 	}
@@ -367,7 +378,7 @@ public class Guias extends JFrame{
 		labeldataNascimento.setBounds(10, 105, 150, 20);
 		painel.add(labeldataNascimento);
 				
-		JTextField fielddataNascimento = new JTextField();
+		fielddataNascimento = new JTextField();
 		fielddataNascimento.setBounds(10, 125, 150, 20);
 		painel.add(fielddataNascimento);	
 	}
@@ -378,9 +389,31 @@ public class Guias extends JFrame{
 		labelConta.setBounds(x, y, width, height);
 		painel.add(labelConta);
 		
-		JTextField fieldConta = new JTextField();
+		fieldConta = new JTextField();
 		fieldConta.setBounds( x, y+20, width, height);
 		painel.add(fieldConta);
+				
+	}
+	public void numeroDaConta2(JPanel painel, int x, int y , int width, int height){
+		//NUMERO DA CONTA 10, 105, 150, 20
+		JLabel labelConta = new JLabel("Número da Conta: ");
+		labelConta.setBounds(x, y, width, height);
+		painel.add(labelConta);
+		
+		fieldConta2 = new JTextField();
+		fieldConta2.setBounds( x, y+20, width, height);
+		painel.add(fieldConta2);
+				
+	}
+	public void numeroDaConta3(JPanel painel, int x, int y , int width, int height){
+		//NUMERO DA CONTA 10, 105, 150, 20
+		JLabel labelConta = new JLabel("Número da Conta: ");
+		labelConta.setBounds(x, y, width, height);
+		painel.add(labelConta);
+		
+		fieldConta3 = new JTextField();
+		fieldConta3.setBounds( x, y+20, width, height);
+		painel.add(fieldConta3);
 				
 	}
 	//
@@ -390,10 +423,33 @@ public class Guias extends JFrame{
 		label2.setBounds( x, y, width, heigth );
 		painel.add( label2 );
 
-		JTextField fieldCPF = new JTextField();
+		fieldCPF = new JTextField();
 		fieldCPF.setBounds( x, y+20, width, heigth );
-		painel.add( fieldCPF );	
+		painel.add( fieldCPF );
+		
 	}
+	public void cpf2(JPanel painel,int x, int y, int width, int heigth){
+		//CPF x=10, y=60, width=150, heigth=20;
+		JLabel label2 = new JLabel( "CPF:" );
+		label2.setBounds( x, y, width, heigth );
+		painel.add( label2 );
+
+		fieldCPF2 = new JTextField();
+		fieldCPF2.setBounds( x, y+20, width, heigth );
+		painel.add( fieldCPF2 );
+	}
+	public void cpf3(JPanel painel,int x, int y, int width, int heigth){
+		//CPF x=10, y=60, width=150, heigth=20;
+		JLabel label2 = new JLabel( "CPF:" );
+		label2.setBounds( x, y, width, heigth );
+		painel.add( label2 );
+
+		fieldCPF3 = new JTextField();
+		fieldCPF3.setBounds( x, y+20, width, heigth );
+		painel.add( fieldCPF3 );
+		
+	}
+	
 	//
 	public void nome(JPanel painel){
 		//NOME
@@ -401,9 +457,10 @@ public class Guias extends JFrame{
 		label1.setBounds( 10, 15, 150, 20 );
 		painel.add( label1 );
 		//Campo de NOME
-		JTextField fieldNome = new JTextField();
+		fieldNome = new JTextField();
 		fieldNome.setBounds( 10, 35, 150, 20 );
 		painel.add( fieldNome );
+		
 	}
 	//Botao de Avançar para seguir a tela de Confirmação
 	public Component botaoCadastrar(){
@@ -414,7 +471,17 @@ public class Guias extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//GATILHO PARA NOVA JANELA DE CONFIRMAÇÃO DE AÇÃO
-				JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+				c = new Conta();			
+				
+				c.setCpf(fieldCPF.getText());
+				c.setNome(fieldNome.getText());
+				c.setData(fielddataNascimento.getText());
+				c.setNumero(fieldConta.getText());
+				c.setSaldo(0);
+				c.setListaConta(lc.getListaConta());
+				lc.getListaConta().add(c);
+				banco.cadastrarConta(c);
+				//JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
 			}
 		});
 		botaoAvancar.setBounds(520, 300, 100, 30);
@@ -446,6 +513,7 @@ public class Guias extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// Chamada do metodo de tela com botoes de confirmar e cancelar
+				banco.deletarConta(fieldConta3.getText());
 				td.telaConsultaDeletar();
 				td.setVisible(true);
 			}
@@ -461,6 +529,7 @@ public class Guias extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Botão para confirmar ação de Debitar e Creditar
+				//fieldConta2
 				JOptionPane.showMessageDialog(null, "Creditado com Sucesso!");
 		
 			}
@@ -476,6 +545,7 @@ public class Guias extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//Botão para confirmar ação de Debitar e Creditar
+				
 				JOptionPane.showMessageDialog(null, "Debitado com Sucesso!");
 				
 			}

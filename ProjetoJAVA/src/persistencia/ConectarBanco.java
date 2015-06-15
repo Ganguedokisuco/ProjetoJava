@@ -19,17 +19,13 @@ import javax.swing.JOptionPane;
 
 public class ConectarBanco {
 
-	public static void main(String[] args) {
-		
-		  conexao();
-		}
 	
 	public Statement stm;//responsavel por preparar e realizar pesquisas no BD
 	public ResultSet rs;//responsavel por armazenar o resultado de uma pesquisa passada para o Stm
-	public static Connection conn;//responsavel por realizar a conex�o com o BD
+	public Connection conn;//responsavel por realizar a conex�o com o BD
 	
 	private static String driver = "org.postgresql.Driver";
-	private static String caminho = "jdbc:postgresql://localhost:5432/colegio";
+	private static String caminho = "jdbc:postgresql://localhost:5432/database_teste";
 	private static String usuario = "postgres";
 	private static String senha = "hbytes1234";
 	
@@ -38,20 +34,23 @@ public class ConectarBanco {
 //	private static String usuario = "sa";
 //	private static String senha = "hbytes1234";
 //	
-	public static void conexao(){
+	public Connection conexao(){
 		
 		try {//tentativa inicial
 			System.setProperty("jdbc.Drivers", driver);//seta a propriedade do driver de conex�o
 			conn = DriverManager.getConnection(caminho, usuario, senha);//realiza a conex�o com o BD
+			
 			JOptionPane.showMessageDialog(null,"Banco conectado com sucesso! ");
+			return conn;
 		} catch (SQLException e) {//excess�o 
 			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,"ERRO DE CONEXAO!\n Erro: "+e.getMessage());
 		}
+		return conn;
 	}
         public void executaSql(String sql){
             try {
-                stm = conn.createStatement(rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+                stm = conn.createStatement();
                 rs = stm.executeQuery(sql);
                  
             } catch (SQLException ex) {
