@@ -1,9 +1,10 @@
 package persistencia;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
@@ -16,6 +17,7 @@ import org.postgresql.core.ProtocolConnection;
 import org.postgresql.util.HostSpec;
 
 import facade.Conta;
+import modelo.ListaConta;
 
 public class ContasBancariasBD implements IContasBancarias {
 	ConectarBanco cbd = new ConectarBanco();
@@ -63,9 +65,44 @@ public class ContasBancariasBD implements IContasBancarias {
 
 	@Override
 	public List<Conta> listar() {
-		// TODO Auto-generated method stub
-//		JDBC
-		return null;
+		
+		List<Conta> contas = new ArrayList<>();
+		
+		try{
+		cbd.conexao();
+		
+		String listarsql = "SELECT * FROM conta";
+		PreparedStatement psl = cbd.conn.prepareStatement(listarsql);
+		int resultadoDoStatement = psl.executeUpdate();
+		
+		System.out.printf("resultadoDoStatement = %d", resultadoDoStatement);
+		
+		ResultSet rs = psl.executeQuery();
+		
+		while (rs.next()) {
+			Conta conta = new Conta();
+
+			int i = 0;
+			String numero = rs.getString(++i);
+			double saldo = rs.getDouble(++i);
+
+			conta.getCpf();
+			conta.getNome();
+			conta.getNumero();
+			conta.getData();
+			conta.getSaldo();			
+
+			contas.add(conta);
+
+			System.out.printf("CPF: %s, Nome: %s, Numero: %s, Data: %s, saldo = %.2f\n",
+					conta.getCpf(), conta.getNome(),conta.getNumero(),conta.getData(),conta.getSaldo());
+		}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		cbd.conn.close();
+		return contas;
 	}
 
 	@Override
